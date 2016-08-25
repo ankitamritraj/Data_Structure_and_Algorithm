@@ -45,7 +45,7 @@ void iterative_Hanoi(int n)
 	for(i = 1; i<=steps;i++)
 	{
 		source->data;
-		if((i % 3)==0)								// if i%3==0 move from aux to destination
+		if((i % 3)==0)								// if i%3==0 move from aux and destination
 		{
 			if(Aux->data > Dest->data)
 			{
@@ -61,7 +61,7 @@ void iterative_Hanoi(int n)
 				printf("Move form peg %c to %c\n",dest_pole,aux_pole);
 			}
 		}
-		else if(i % 3 == 1)							// if i%3==1 move from source to destination
+		else if(i % 3 == 1)							// if i%3==1 move between source and destination
 		{
 			if(source->data > Dest->data)
 			{
@@ -78,7 +78,7 @@ void iterative_Hanoi(int n)
 		}
 		else 
 		{
-			if(source->data > Aux->data)			// if i%3 == 2 move from source to aux
+			if(source->data > Aux->data)			// if i%3 == 2 move between source and aux
 			{
 				Aux = g_slist_prepend(Aux, source->data);
 				source = g_slist_remove_link(source,source);
