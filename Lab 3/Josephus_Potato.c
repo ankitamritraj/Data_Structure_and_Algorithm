@@ -8,74 +8,81 @@ Date: 01/09/2016
 #include <stdlib.h>
 #include <string.h>
 
-// void Enque();
-void Deque();
-void Display();
-// void Is_Empty();
-void Create();
 
 struct node 
 {
 	int data;
 	struct node *next;
+	struct node *previos;
 };
 
 struct node *front = NULL;
 struct node *rear = NULL;
 
+// void Enque();
+void Deque();
+void Display();
+// void Is_Empty();
+void Create(int );
+// int optimum(int , int );
+void remove_node( struct node *delete);
+
 int main()
 {	
-	while(1)
-	{
-		int choice;
-		printf("1.Create\n2.Enque\n3.Deque\n4.Display\n5.Is_Empty\n");
-		scanf("%d",&choice);
-		switch(choice)
-		{
-			case 1 : Create();
-					 break;
-
-			// case 2 : Enque();
-					 // break ;
-		
-			case 3 : Deque();
-					 break ;
-
-			case 4 : Display();
-					 break ;
-
-			// case 5 : Is_Empty();
-					 // break ;
-			default : exit(0);
-					  break ;
-		}
-	}
+	int n , pos;
+	printf("Enter value of n : ");
+	scanf("%d",&n);;
+	printf("Enter value of d : ");
+	scanf("%d",&pos);
+	Create(n);
+	Display();
+	pos = optimum(n,pos);
+	printf("Best position is = %d\n", pos);
 	return 0;	
 }
 
-void Create()
+void Create(int n)
 {
-	int n,i;
-	printf("Enter value of n :");
-	scanf("%d",&n);
+	int i;
+	// printf("Enter value of n :");
+	// scanf("%d",&n);
 	struct node *temp = NULL;
 	temp = (struct node *) malloc(sizeof(struct node));
 	temp->data = 1;
 	temp->next = NULL;
 	front = temp;
-	printf("%d\n", front->data);
+	front->next = front;
+	front->previos = front;
 	rear = temp;
-	for(i=2;i<=n;i++)
+	rear->next = front ;
+	rear->previos = front ;
+	printf("%d\n", rear->data);
+	if(n>1)
 	{
 		temp = (struct node *) malloc(sizeof(struct node));
-		temp->data = i;
-		temp->next = NULL;
+		temp->data =2;
+		front->next = temp;
+		front->previos = temp;
 		rear->next = temp;
+		temp->previos = rear;
+		temp->next = front;
 		rear = temp;
+	
 		printf("%d\n", rear->data);
+		for(i=3;i<=n;i++)
+		{
+			temp = (struct node *) malloc(sizeof(struct node));
+			temp->data = i;
+			rear->next = temp;
+			temp->next = front;
+			temp->previos = rear;
+			rear = temp;
+			// rear = temp;
+			printf("%d\n", rear->data);
+		}
+		printf("Rear data =  %d \n", rear->data);
+		rear->next = front;
 	}
-	printf("Rear data =  %d \n", rear->data);
-	rear->next = front;
 } 
 
 void Display()
@@ -90,7 +97,9 @@ void Display()
 		// printf("%d\n", front->data );
 		temp = front;
 		printf("%d\n", temp->data);
+		// printf("rear data = %d \n", rear->data);
 		temp = temp->next;
+		// printf("Temp data = %d \n", temp->data);
 		while(temp!=rear->next)
 		{
 			// temp = front;
@@ -99,6 +108,27 @@ void Display()
 		}
 	}
 }
+
+int optimum(int n, int pos)
+{
+	struct node *temp;
+	int i , count = 0;
+	temp = front;
+	while(cnt != n-1)
+	{
+		for(i = 0 ;i < pos; i++)
+		{
+			temp = temp->next;
+		}
+		remove_node(temp);
+	}
+	return 0;
+}
+
+// void remove_node(strct node *delete)
+// {
+
+// }
 
 void Deque()
 {
