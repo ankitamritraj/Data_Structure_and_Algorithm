@@ -36,15 +36,15 @@ void iterative_Hanoi(int n)
 		aux_pole = 'C';
 		dest_pole = 'B';
 	}
-	GSList *source = NULL , *Aux = NULL , *Dest = NULL;
+	GSList *source = NULL , *Aux = NULL , *Dest = NULL , *point = NULL;
 	Aux = g_slist_prepend(Aux ,0);
 	Dest = g_slist_prepend(Dest , 0);
-	source = g_slist_prepend(source, 0);
-	for(i = 1 ; i <=n ; i++)
-		source = g_slist_prepend(source, GINT_TO_POINTER(i)); 	
+	for(i = n ; i >=1 ; i--)
+		source = g_slist_append(source, GINT_TO_POINTER(i)); 	
+	// point = g_slist_prepend(source, 0);
+
 	for(i = 1; i<=steps;i++)
 	{
-		source->data;
 		if((i % 3)==0)								// if i%3==0 move from aux and destination
 		{
 			if(Aux->data > Dest->data)
