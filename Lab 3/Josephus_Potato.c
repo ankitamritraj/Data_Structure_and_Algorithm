@@ -24,8 +24,8 @@ void Deque();
 void Display();
 // void Is_Empty();
 void Create(int );
-// int optimum(int , int );
-void remove_node( struct node *delete);
+int optimum(int , int );
+struct node * remove_node( struct node *delete);
 
 int main()
 {	
@@ -35,17 +35,16 @@ int main()
 	printf("Enter value of d : ");
 	scanf("%d",&pos);
 	Create(n);
-	Display();
+	printf("\nThe removal secquence is as follows \n");
 	pos = optimum(n,pos);
-	printf("Best position is = %d\n", pos);
+
+	printf("\nHence the person at position %d survives. (WINNER)\n", pos);
 	return 0;	
 }
 
 void Create(int n)
 {
 	int i;
-	// printf("Enter value of n :");
-	// scanf("%d",&n);
 	struct node *temp = NULL;
 	temp = (struct node *) malloc(sizeof(struct node));
 	temp->data = 1;
@@ -56,7 +55,6 @@ void Create(int n)
 	rear = temp;
 	rear->next = front ;
 	rear->previos = front ;
-	printf("%d\n", rear->data);
 	if(n>1)
 	{
 		temp = (struct node *) malloc(sizeof(struct node));
@@ -68,7 +66,6 @@ void Create(int n)
 		temp->next = front;
 		rear = temp;
 	
-		printf("%d\n", rear->data);
 		for(i=3;i<=n;i++)
 		{
 			temp = (struct node *) malloc(sizeof(struct node));
@@ -77,10 +74,7 @@ void Create(int n)
 			temp->next = front;
 			temp->previos = rear;
 			rear = temp;
-			// rear = temp;
-			printf("%d\n", rear->data);
 		}
-		printf("Rear data =  %d \n", rear->data);
 		rear->next = front;
 	}
 } 
@@ -94,15 +88,11 @@ void Display()
 	}
 	else
 	{
-		// printf("%d\n", front->data );
 		temp = front;
 		printf("%d\n", temp->data);
-		// printf("rear data = %d \n", rear->data);
 		temp = temp->next;
-		// printf("Temp data = %d \n", temp->data);
 		while(temp!=rear->next)
 		{
-			// temp = front;
 			printf("%d\n", temp->data);
 			temp = temp->next;
 		}
@@ -111,24 +101,61 @@ void Display()
 
 int optimum(int n, int pos)
 {
-	struct node *temp;
+	struct node *temp , *next_node = front;
 	int i , count = 0;
 	temp = front;
-	while(cnt != n-1)
+	while(count != n-1)
 	{
-		for(i = 0 ;i < pos; i++)
+		for(i = 0 ;i < pos-1; i++)
 		{
 			temp = temp->next;
 		}
-		remove_node(temp);
+		if(count == 0)
+		{
+			printf("[%d] Firstly, the person at position %d is removed. \n",count+1 , temp->data);
+		} 
+		else if(count == n-2)
+		{
+			printf("[%d] Finally, the person at position %d is removed.\n",count+1, temp->data );
+		}
+		else
+		{
+			printf("[%d] Then person at position %d is removed.\n", count+1, temp->data);
+		}
+		next_node = remove_node(temp);
+		temp = next_node;
+		count++;
 	}
-	return 0;
+	return temp->data;
 }
 
-// void remove_node(strct node *delete)
-// {
-
-// }
+struct node * remove_node(struct node *delete)
+{
+	struct node *smaller, *larger;
+	if(front == rear)
+	{
+		front = rear = NULL;
+		smaller = NULL;
+		larger = NULL;
+		free(front);
+	}
+	else if(delete == front)
+	{
+		smaller = front->previos;
+		larger = front->next;
+		front = larger;
+		rear->next = front;
+	}
+	else
+	{
+		smaller = delete->previos;
+		larger = delete->next;
+		smaller->next = larger;
+		larger->previos = smaller;
+		free(delete);
+	}
+	return larger;
+}
 
 void Deque()
 {
@@ -149,7 +176,6 @@ void Deque()
 		temp = front->next;
 		front = temp;
 		rear->next = front;
-		// free(temp);
 	}
 }
 
