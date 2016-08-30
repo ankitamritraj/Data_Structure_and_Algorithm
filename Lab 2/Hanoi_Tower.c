@@ -44,7 +44,7 @@ void iterative_Hanoi(int n)
 		dest_pole = 'B';
 	}
 	GSList *source = NULL , *Aux = NULL , *Dest = NULL;
-	Aux = g_slist_prepend(Aux ,GINT_TO_POINTER(0) );
+	Aux = g_slist_prepend(Aux ,GINT_TO_POINTER(0));
 	Dest = g_slist_prepend(Dest , GINT_TO_POINTER(0) );
 	source = g_slist_prepend(source, GINT_TO_POINTER(0) );
 	for(i = n ; i >=1 ; i--)
