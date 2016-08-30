@@ -1,0 +1,7 @@
+In order to run a program involving gLib library function you should follow the following two steps :
+
+1. First install the Glib libray in your system using the command : sudo apt-get install libgtk2.0-dev 
+2. Now the compilation part of the program
+   a) Let say you have made a C program named Hanoi_Tower.c 
+   b) Now to compile the program you should write gcc -o tower Hanoi_Tower.c $(pkg-config --cflags --libs glib-2.0) 
+   c) Now to execute the program write ./tower on the commandline.
