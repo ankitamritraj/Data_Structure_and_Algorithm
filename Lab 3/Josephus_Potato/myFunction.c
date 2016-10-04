@@ -38,24 +38,12 @@ void Create(int n)
 		}
 		rear->next = front;
 	}
-
 } 
 
 int optimum(int n, int pos)
 {
 	struct node *temp , *next_node = front;
-	// int j;
-	// for(i = 0 ;i < n+10; i++)
-	// {
-	// 	temp = front;
-	// 	for(j = 0 ;j < pos-1 ; j++)
-	// 	{
-	// 		temp = temp->next;
-	// 	}	
-	// 	printf("%d  \n", temp->data);
-	// }
 	int i , count = 0;
-	temp = (struct node *) malloc(sizeof(struct node));
 	temp = front;
 	while(count != n-1)
 	{

@@ -1,3 +1,11 @@
+######################################################
+#This Makefile is created to help IC250 students
+#Created By:
+#Aditya Nigam
+#SCEE
+#IIT Mandi
+#Please modify according to your need 
+######################################################
 
 inc =  -lm 
 
