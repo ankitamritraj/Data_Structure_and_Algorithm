@@ -2,7 +2,7 @@
 Name: Ankit Amrit Raj
 Roll: B15107
 Purpose: IC250 Assignment 03 - Question 1 - Josephus Potato 
-Date: 01/09/2016
+Date: 01/09/2016l
 ***********************************************/
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,13 +19,9 @@ struct node
 struct node *front = NULL;
 struct node *rear = NULL;
 
-// void Enque();
-void Deque();
-void Display();
-// void Is_Empty();
 void Create(int );
 int optimum(int , int );
-struct node * remove_node( struct node *delete);
+struct node *remove_node( struct node *delete);
 
 int main()
 {	
@@ -78,26 +74,6 @@ void Create(int n)
 		rear->next = front;
 	}
 } 
-
-void Display()
-{
-	struct node *temp;
-	if(front == NULL)
-	{
-		printf("Queue is Empty\n");
-	}
-	else
-	{
-		temp = front;
-		printf("%d\n", temp->data);
-		temp = temp->next;
-		while(temp!=rear->next)
-		{
-			printf("%d\n", temp->data);
-			temp = temp->next;
-		}
-	}
-}
 
 int optimum(int n, int pos)
 {
@@ -156,37 +132,4 @@ struct node * remove_node(struct node *delete)
 	}
 	return larger;
 }
-
-void Deque()
-{
-	struct node *temp;
-	if(front == NULL )
-	{
-		printf("Nothing to pop from the Queue\n");
-	}
-	else if(front == rear)
-	{
-		printf("Number Removed is : %d\n" ,front->data);
-		front = NULL;
-		rear = NULL;
-	}
-	else
-	{
-		printf("Number Removed is : %d", front->data);
-		temp = front->next;
-		front = temp;
-		rear->next = front;
-	}
-}
-
-
-
-
-
-
-
-
-
-
-
 

@@ -1,5 +1,4 @@
-
-inc =  -lm 
+inc = -lm 
 
 all: main.o myFunction.o myLibrary.h
 	gcc -w -o my_exe main.o myFunction.o -Wno-deprecated -I ${inc} 
